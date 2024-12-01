@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon War</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Dragon War</h1>
+    <p>Niveau du Dragon : <span id="dragon-level-value">1</span></p>
+    <p>Or : <span id="gold-value">Gold</span></p>
+</header>
+
+<button id="reset-save" onclick="clearSave()">Supprimer la sauvegarde</button>
+
+<div id="notification" class="hidden">
+    <img src="boost-icon.png" alt="Boost Icon" class="notification-icon">
+    <p>Boost acheté : +10 dégâts !</p>
+</div>
+
+<div id="game-container">
+    <!-- Section du dragon -->
+    <section id="dragon-section">
+        <img id="dragon-image" src="images/dragon.png" alt="Dragon" />
+        <div id="health-bar">
+            <div id="health-bar-fill"></div>
+        </div>
+        <p>Vie du Dragon : <span id="health-percentage">100%</span></p>
+    </section>
+
+    <!-- Section de la boutique -->
+    <section id="market-section">
+        <h2>Boutique</h2>
+        
+        <!-- Choix de la quantité d'achat -->
+        <div id="quantity-buttons">
+            <button class="quantity-button" onclick="setQuantity(1)"aria-label="Acheter 1 item">Acheter x1</button>
+            <button class="quantity-button" onclick="setQuantity(10)"aria-label="Acheter 10 item">Acheter x10</button>
+            <button class="quantity-button" onclick="setQuantity(100)"aria-label="Acheter 100 item">Acheter x100</button>
+        </div>
+        
+        <!-- Améliorations disponibles -->
+        <div class="boost-item" id="Nid">
+            <button class="boost-button" id="buy-Nid" onclick="buyBoost('Nid')">
+                Nid (Coût : <span class="cost-value">50</span>)
+            </button>
+            <img src="images/Nid.png" alt="Nid">
+            <p>Possédé : <span id="Nid-count">x0</span></p>
+        </div>
+
+        <div class="boost-item" id="Grotte">
+            <button class="boost-button" id="buy-Grotte" onclick="buyBoost('Grotte')">
+                Grotte (Coût : <span class="cost-value">450</span>)
+            </button>
+            <img src="images/Grotte.png" alt="Grotte">
+            <p>Possédé : <span id="Grotte-count">x0</span></p>
+        </div>
+
+        <div class="boost-item" id="Feu">
+            <button class="boost-button" id="buy-Feu" onclick="buyBoost('Feu')">
+                Feu (Coût : <span class="cost-value">4050</span>)
+            </button>
+            <img src="images/Feu.png" alt="Feu">
+            <p>Possédé : <span id="Feu-count">x0</span></p>
+        </div>
+
+        <div class="boost-item" id="Tour">
+            <button class="boost-button" id="buy-Tour" onclick="buyBoost('Tour')">
+                Tour (Coût : <span class="cost-value">36450</span>)
+            </button>
+            <img src="images/Tour.png" alt="Tour">
+            <p>Possédé : <span id="Tour-count">x0</span></p>
+        </div>
+
+        <div class="boost-item" id="Volcan">
+            <button class="boost-button" id="buy-Volcan" onclick="buyBoost('Volcan')">
+                Volcan (Coût : <span class="cost-value">328050</span>)
+            </button>
+            <img src="images/Volcan.png" alt="Volcan">
+            <p>Possédé : <span id="Volcan-count">x0</span></p>
+        </div>
+        
+        <!-- Affichage des DPS (dégâts par seconde) -->
+        <p>Dégâts automatiques par seconde : <span id="dps-value">0</span></p>
+    </section>
+</div>
+
+
+<div id="leaderboard">
+    <h3>Classement des joueurs</h3>
+    <!-- Les scores seront insérés ici -->
+</div>
+
+<!-- Section Achievements -->
+<div id="achievements-section" style="display:none;">
+    <h3>Réalisations</h3>
+    <ul id="achievements-list"></ul>
+</div>
+<button onclick="toggleAchievements()">Voir les réalisations</button>
+
+
+<!-- Notifications -->
+<div id="notification"></div>
+
+<!-- Sons du jeu -->
+<audio id="click-sound" src="audio/click-sound.mp3"></audio>
+<audio id="purchase-sound" src="audio/purchase-sound.mp3"></audio>
+<audio id="dragon-defeat-sound" src="audio/dragon-defeat-sound.mp3"></audio>
+<audio id="achievement-sound" src="audio/achievement-sound.mp3"></audio>
+<audio id="error-sound" src="audio/error-sound.mp3"></audio>
+<audio id="click-X-boost" src="audio/click-X-boost.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>

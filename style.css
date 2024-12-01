@@ -1,0 +1,420 @@
+/* Style général */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* En-tête */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Conteneur principal */
+#game-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+/* Section du dragon */
+#dragon-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dragon-image {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+#dragon-image:active {
+    transform: scale(0.95);
+}
+
+.dragon-defeated {
+    animation: defeat-animation 1s forwards;
+}
+
+@keyframes defeat-animation {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+/* Barre de santé */
+#health-bar {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px 0;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#health-bar-fill {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease;
+}
+
+#health-percentage {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Section du marché */
+#market-section {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#market-section h2 {
+    margin-bottom: 20px;
+}
+
+.boost-item {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.boost-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: url('images/button-bg.png') no-repeat center center;
+    background-size: cover;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+}
+
+.boost-button:hover {
+    transform: scale(1.05);
+}
+
+.boost-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.boost-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.boost-details img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.boost-details p {
+    margin: 5px 0;
+}
+
+.cost {
+    font-weight: bold;
+}
+
+.cost.low-funds {
+    color: red;
+}
+
+.count {
+    font-size: 14px;
+    color: #999;
+}
+
+/* Barre de navigation pour l'achat */
+#quantity-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.quantity-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.quantity-button:hover {
+    background-color: #555;
+}
+
+.quantity-button.active {
+    background-color: #f39c12;
+}
+
+/* Boîte de notification */
+#notification {
+    display: none;
+    opacity: 0;
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#notification.show {
+    display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Informations générales */
+#info-section {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#info-section p {
+    margin: 5px 0;
+}
+
+#gold-value {
+    font-weight: bold;
+    color: #f39c12;
+}
+
+#dps-value {
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+#dragon-level-value {
+    font-weight: bold;
+    color: #8e44ad;
+}
+
+/* Sons */
+audio {
+    display: none;
+}
+
+/* Ajout de style pour l'achat multiple */
+#boosts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Amélioration de la visibilité des tooltips */
+.tooltip {
+    display: none;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.boost-button:hover .tooltip {
+    display: block;
+}
+
+/* Style de défilement personnalisé */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Amélioration des sections boost-item */
+.boost-item img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.boost-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Amélioration pour l'accessibilité */
+.quantity-button {
+    outline: none;
+}
+
+.quantity-button:focus {
+    outline: 2px solid #f39c12;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    #game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #market-section, #dragon-section {
+        width: 100%;
+    }
+
+    #dragon-image {
+        width: 100%;
+        max-width: 300px;
+        transition: transform 0.3s ease;
+    }
+
+    #health-bar-fill {
+        transition: width 0.7s ease, background-color 0.7s ease;
+    }
+
+    #notification {
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    @keyframes defeat-animation {
+        0% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-20px); }
+    }
+}
+
+/* Améliorations supplémentaires */
+.boost-button.purchased {
+    animation: pulse 0.6s ease-in-out forwards;
+    transition: background-color 0.4s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.damage-popup {
+    position: absolute;
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px black;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 215, 0, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    #dragon-image {
+        width: 100%;
+        max-width: 200px;
+    }
+    .boost-item {
+        flex-direction: column;
+    }
+}
+
+
+#health-bar-fill.damage {
+    animation: shake 0.2s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+}
+
+#notification {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.boost {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boost.purchased {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
